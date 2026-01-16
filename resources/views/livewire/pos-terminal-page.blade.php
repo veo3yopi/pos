@@ -188,7 +188,7 @@
                 <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-gray-900">
                     <p class="text-base font-semibold text-gray-900 dark:text-white">Ringkasan Pesanan</p>
 
-                    <div class="mt-4 space-y-3">
+                    <div class="mt-4 max-h-[360px] space-y-3 overflow-y-auto pr-2">
                         @foreach ($cart as $item)
                             <div class="flex items-start justify-between border-b border-gray-200 pb-3 dark:border-white/10">
                                 <div>
