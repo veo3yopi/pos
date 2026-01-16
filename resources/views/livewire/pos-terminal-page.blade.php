@@ -18,8 +18,7 @@
                         <label class="text-xs uppercase tracking-wide text-gray-500 dark:text-slate-400">Cari Produk</label>
                         <input
                             type="text"
-                            wire:model.debounce.300ms="search"
-                            wire:keydown.enter.prevent="addFirstMatch"
+                            wire:model.live="search"
                             placeholder="Ketik nama produk..."
                             class="mt-2 w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-primary-500 focus:ring-1 focus:ring-primary-500 dark:border-white/10 dark:bg-gray-950 dark:text-white dark:placeholder:text-slate-500"
                         />

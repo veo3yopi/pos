@@ -30,14 +30,7 @@ class PosTerminalPage extends Component
 
     public function addFirstMatch(): void
     {
-        $variant = $this->searchVariants()->first();
-
-        if (! $variant) {
-            $this->toast('Produk tidak ditemukan.', 'error');
-            return;
-        }
-
-        $this->addVariant($variant->id);
+        // Disabled: search should only filter list, not auto-add to cart.
     }
 
     public function addVariant(int $variantId): void
