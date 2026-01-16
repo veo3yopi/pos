@@ -1,6 +1,5 @@
 <div
-    x-data="{ toast: { show: false, message: '', type: 'info' }, openCheckout: @entangle('showCheckout') }"
-    @toast.window="toast = { show: true, message: $event.detail.message, type: $event.detail.type }; setTimeout(() => toast.show = false, 2500)"
+    x-data="{ openCheckout: @entangle('showCheckout') }"
     class="space-y-6"
 >
     <div class="flex items-center justify-between">
@@ -74,13 +73,13 @@
             </div>
         </div>
 
-        <div class="space-y-6">
-            <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-gray-950">
+        <div class="space-y-6 lg:sticky lg:top-6 lg:h-[calc(100vh-140px)]">
+            <div class="flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-gray-950">
                 <div class="flex items-center justify-between">
                     <p class="text-base font-semibold text-gray-900 dark:text-white">Keranjang</p>
                     <span class="text-xs text-red-500 dark:text-red-400">{{ $this->totalItems ? '' : 'Kosongkan' }}</span>
                 </div>
-                <div class="mt-4 space-y-3">
+                <div class="pos-scroll mt-4 flex-1 space-y-3 overflow-y-auto pr-2">
                     @forelse ($cart as $item)
                         <div class="rounded-xl border border-gray-200 bg-white px-3 py-3 shadow-sm dark:border-white/10 dark:bg-gray-900">
                             <div class="flex items-center justify-between">
@@ -210,12 +209,4 @@
         </div>
     </div>
 
-    <div
-        x-show="toast.show"
-        x-transition
-        class="fixed bottom-6 right-6 rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm shadow-lg dark:border-white/10 dark:bg-gray-950"
-        :class="toast.type === 'error' ? 'border-red-500/50 text-red-300' : toast.type === 'success' ? 'border-emerald-500/50 text-emerald-300' : 'text-slate-200'"
-    >
-        <p x-text="toast.message"></p>
-    </div>
 </div>

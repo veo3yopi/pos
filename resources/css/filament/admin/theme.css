@@ -6,3 +6,31 @@
 @source '../../../../app/Livewire/**/*.php';
 @source '../../../../app/Filament/**/*.php';
 @source '../../../../app/Services/**/*.php';
+
+.pos-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, 0.6) transparent;
+}
+
+.pos-scroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+.pos-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.pos-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(148, 163, 184, 0.35);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.dark .pos-scroll {
+    scrollbar-color: rgba(100, 116, 139, 0.7) transparent;
+}
+
+.dark .pos-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 116, 139, 0.45);
+}

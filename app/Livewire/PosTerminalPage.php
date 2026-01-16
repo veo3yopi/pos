@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Category;
 use App\Models\ProductVariant;
 use App\Services\PosCheckoutService;
+use Filament\Notifications\Notification;
 use Illuminate\Support\Arr;
 use Livewire\Component;
 
@@ -276,6 +277,17 @@ class PosTerminalPage extends Component
 
     private function toast(string $message, string $type = 'info'): void
     {
-        $this->dispatch('toast', message: $message, type: $type);
+        $notification = Notification::make()
+            ->title($message);
+
+        if ($type === 'success') {
+            $notification->success();
+        } elseif ($type === 'error') {
+            $notification->danger();
+        } else {
+            $notification->info();
+        }
+
+        $notification->send();
     }
 }
