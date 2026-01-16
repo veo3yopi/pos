@@ -68,7 +68,7 @@
                             </button>
                         </div>
                     @empty
-                        <div class="rounded-xl border border-gray-200 bg-white p-6 text-center text-sm text-gray-500 dark:border-white/10 dark:bg-gray-950/60 dark:text-slate-400">Produk tidak ditemukan.</div>
+                        <div class="col-span-full rounded-xl border border-gray-200 bg-white p-6 text-center text-sm text-gray-500 dark:border-white/10 dark:bg-gray-950/60 dark:text-slate-400">Produk tidak ditemukan.</div>
                     @endforelse
                 </div>
             </div>
