@@ -160,9 +160,20 @@
                             type="text"
                             inputmode="numeric"
                             pattern="[0-9]*"
-                            wire:model.lazy="cashReceived"
+                            wire:model.live="cashReceived"
                             class="mt-2 w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 dark:border-white/10 dark:bg-gray-950 dark:text-white"
                         />
+                        <div class="mt-2 text-xs">
+                            @if ($paymentMethod === 'cash' && $cashReceived !== '')
+                                @if ($this->change === 0 && $this->cashReceivedNumber < $this->grandTotal)
+                                    <span class="text-red-600 dark:text-red-400">Uang bayar kurang.</span>
+                                @else
+                                    <span class="text-emerald-600 dark:text-emerald-400">
+                                        Kembalian: Rp {{ number_format($this->change, 0, ',', '.') }}
+                                    </span>
+                                @endif
+                            @endif
+                        </div>
                     </div>
 
                     <div class="mt-6 grid grid-cols-2 gap-3">

@@ -15,7 +15,7 @@ class PosTerminalPage extends Component
     public ?int $categoryId = null;
     public array $cart = [];
     public string $paymentMethod = 'cash';
-    public ?float $cashReceived = null;
+    public string $cashReceived = '';
     public float $discountTotal = 0;
     public bool $processing = false;
     public bool $showCheckout = false;
@@ -168,12 +168,12 @@ class PosTerminalPage extends Component
             return;
         }
 
-        if ($this->paymentMethod === 'cash' && $this->cashReceived === null) {
+        if ($this->paymentMethod === 'cash' && $this->cashReceived === '') {
             $this->toast('Masukkan uang bayar.', 'error');
             return;
         }
 
-        if ($this->paymentMethod === 'cash' && $this->cashReceived < $this->grandTotal) {
+        if ($this->paymentMethod === 'cash' && $this->cashReceivedNumber < $this->grandTotal) {
             $this->toast('Uang bayar kurang.', 'error');
             return;
         }
@@ -186,7 +186,7 @@ class PosTerminalPage extends Component
                 'items' => array_values($this->cart),
                 'discount_total' => $this->discountTotal,
                 'payment_method' => $this->paymentMethod,
-                'cash_received' => $this->cashReceived,
+                'cash_received' => $this->cashReceivedNumber,
                 'customer_name' => $this->customerName,
             ]);
 
@@ -229,11 +229,16 @@ class PosTerminalPage extends Component
             return 0;
         }
 
-        if ($this->cashReceived === null) {
+        if ($this->cashReceived === '') {
             return 0;
         }
 
-        return max(0, $this->cashReceived - $this->grandTotal);
+        return max(0, $this->cashReceivedNumber - $this->grandTotal);
+    }
+
+    public function getCashReceivedNumberProperty(): float
+    {
+        return (float) preg_replace('/[^0-9.]/', '', $this->cashReceived);
     }
 
     private function findVariant(int $variantId): ?ProductVariant
