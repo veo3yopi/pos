@@ -44,6 +44,9 @@ class StockResource extends Resource
     {
         return $table
             ->columns([
+            TextColumn::make('index')
+                ->label('No')
+                ->rowIndex(),
                 TextColumn::make('variant.sku')
                     ->label('SKU')
                     ->searchable(),

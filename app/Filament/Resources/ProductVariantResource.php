@@ -58,6 +58,9 @@ class ProductVariantResource extends Resource
     {
         return $table
             ->columns([
+            TextColumn::make('index')
+                ->label('No')
+                ->rowIndex(),
                 TextColumn::make('sku')
                     ->searchable()
                     ->sortable(),

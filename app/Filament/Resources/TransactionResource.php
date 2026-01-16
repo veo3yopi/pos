@@ -11,6 +11,7 @@ use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Actions\Action;
 use Filament\Actions\ViewAction;
 
 class TransactionResource extends Resource
@@ -29,9 +30,9 @@ class TransactionResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')
+                TextColumn::make('index')
                     ->label('No')
-                    ->sortable(),
+                    ->rowIndex(),
                 TextColumn::make('cashier.name')
                     ->label('Cashier')
                     ->sortable(),
@@ -54,6 +55,11 @@ class TransactionResource extends Resource
             ->defaultSort('created_at', 'desc')
             ->actions([
                 ViewAction::make(),
+                Action::make('receipt')
+                    ->label('Receipt')
+                    ->icon('heroicon-o-printer')
+                    ->url(fn(Transaction $record): string => static::getUrl('receipt', ['record' => $record]))
+                    ->openUrlInNewTab(),
             ]);
     }
 
@@ -77,6 +83,7 @@ class TransactionResource extends Resource
         return [
             'index' => Pages\ListTransactions::route('/'),
             'view' => Pages\ViewTransaction::route('/{record}'),
+            'receipt' => Pages\ReceiptTransaction::route('/{record}/receipt'),
         ];
     }
 }

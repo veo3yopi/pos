@@ -29,6 +29,9 @@ class StockLogResource extends Resource
     {
         return $table
             ->columns([
+            TextColumn::make('index')
+                ->label('No')
+                ->rowIndex(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable(),

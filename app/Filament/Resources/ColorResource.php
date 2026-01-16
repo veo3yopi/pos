@@ -41,6 +41,9 @@ class ColorResource extends Resource
     {
         return $table
             ->columns([
+            TextColumn::make('index')
+                ->label('No')
+                ->rowIndex(),
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable(),

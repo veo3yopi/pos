@@ -29,9 +29,10 @@ class PaymentResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('transaction_id')
-                    ->label('Transaction')
-                    ->sortable(),
+                TextColumn::make('index')
+                    ->label('No')
+                    ->rowIndex(),
+
                 TextColumn::make('method')
                     ->badge()
                     ->sortable(),

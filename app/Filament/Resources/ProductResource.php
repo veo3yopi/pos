@@ -44,6 +44,7 @@ class ProductResource extends Resource
                 ->maxLength(1000),
             SpatieMediaLibraryFileUpload::make('images')
                 ->collection('images')
+                ->disk('public')
                 ->image()
                 ->multiple()
                 ->maxFiles(5),
@@ -54,6 +55,9 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
+            TextColumn::make('index')
+                ->label('No')
+                ->rowIndex(),
                 SpatieMediaLibraryImageColumn::make('images')
                     ->collection('images')
                     ->circular()
